@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Версия Release)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            cursor: none;
+        }
+        .download-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.2);
+            padding: 3rem;
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        .download-card:hover {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(59, 130, 246, 0.4);
+        }
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #60a5fa;
+            text-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa;
+            margin: 0 auto 1.5rem;
+            animation: neon-glow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes neon-glow {
+            from { text-shadow: 0 0 5px #60a5fa, 0 0 10px #60a5fa, 0 0 15px #60a5fa; }
+            to { text-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6, 0 0 30px #3b82f6; }
+        }
+        .download-btn {
+            background: linear-gradient(45deg, #3b82f6, #a855f7);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.4s ease;
+        }
+        .download-btn:hover::before {
+            left: 100%;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.7);
+        }
+        .custom-cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #60a5fa;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent);
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(1);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            animation: cursor-pulse 1.2s infinite;
+        }
+        @keyframes cursor-pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        .custom-cursor.hovered {
+            transform: translate(-50%, -50%) scale(0.7);
+            border-color: #a855f7;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.4), transparent);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.7);
+        }
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        h1, p {
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="download-card" id="card">
+        <div class="logo">TopClient</div>
+        <h1 class="text-3xl font-bold mb-4">Версия Release)</h1>
+        <p class="mb-6">Нажмите, чтобы открыть ссылку на скачивание чита!</p>
+        <button onclick="window.open('https://funpay.com/', '_blank')" class="download-btn">Открыть</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Инициализация частиц
+        particlesJS('particles', {
+            particles: {
+                number: { value: 120, density: { enable: true, value_area: 800 } },
+                color: { value: '#60a5fa' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.3, random: true },
+                size: { value: 2, random: true },
+                line_linked: { enable: false },
+                move: { enable: true, speed: 1, direction: 'none', random: true }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            }
+        });
+
+        // Кастомный курсор
+        const cursor = document.getElementById('cursor');
+        let isCursorVisible = true;
+
+        document.addEventListener('mousemove', (e) => {
+            if (isCursorVisible) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursor.style.display = 'block';
+            }
+        });
+
+        // Скрытие курсора при выходе за пределы окна
+        document.addEventListener('mouseleave', () => {
+            cursor.style.display = 'none';
+            isCursorVisible = false;
+        });
+
+        document.addEventListener('mouseenter', () => {
+            isCursorVisible = true;
+            cursor.style.display = 'block';
+        });
+
+        // Эффект наклона карточки в сторону курсора
+        const card = document.getElementById('card');
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+            const rotateY = (mouseX / rect.width) * 20;
+            const rotateX = -(mouseY / rect.height) * 20;
+            card.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+        });
+
+        // Эффект наведения на кнопку
+        const btn = document.querySelector('.download-btn');
+        btn.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+        btn.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+    </script>
+</body>
+</html>
